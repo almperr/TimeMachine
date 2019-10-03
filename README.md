@@ -6,6 +6,6 @@ Time Machine is a Dynamic Delay-Based Audio Effects Module that can alter and re
 
 ### Hardware
 
--Texas Instruments OMAP-L138 LCDK 
--Raspberry Pi 3 
--Arduino Nano
+- Texas Instruments OMAP-L138 LCDK 
+- Raspberry Pi 3 
+- Arduino Nano
