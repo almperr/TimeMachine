@@ -6,6 +6,8 @@ Time Machine is a Dynamic Delay-Based Audio Effects Module that can alter and re
 
 ### Hardware
 
-Several different peices of hardware were needed in order to create a working prototype of Time Machine:
+There are 3 pieces of hardware that communicate with eachother in order to carry out tasks. 
 
-#### DSP
+#### -Texas Instruments OMAP-L138 LCDK 
+#### -Raspberry Pi 3 
+#### -Arduino Nano
