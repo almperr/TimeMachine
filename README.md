@@ -6,19 +6,18 @@ Time Machine is a Dynamic Delay-Based Audio Effects Module that can alter and re
 
 ### Hardware
 
-- Texas Instruments OMAP-L138 LCDK 
-- Raspberry Pi 3 
-- Arduino Nano
-- Uctronics 3.5 inch TFT touch screen 
+- Texas Instruments OMAP-L138 LCDK - Performs all of the Digital Signal Processing operations
+- Raspberry Pi 3 - Used to create the touch screen GUI, receives commands from the Arduino Nano, and sends commands to the OMAP-L138 LCDK via USB 
+- Arduino Nano - Used to create the 12 button push button pad and send messages to the Raspberry Pi 3
+- Uctronics 3.5 inch TFT touch screen - Goes ontop of the Raspberry Pi 3 and is the touch screen for the device
 
 ### Folders and Purpose
 
 #### Arduino
-Contains C++ code written in order to program the Arduino Nano. The Arduino Nano is used is used to create the 12 button push button pad.
+Contains C++ code written in order to program the Arduino Nano
 
 #### DSP
-Contains the C code used for the TI OMAP-L138 Low Cost Development Kit (LCDK). The OMAP-L138 LCDK takes care of all of the digital signal processing operations.   
+Contains the C code used for the TI OMAP-L138 Low Cost Development Kit (LCDK)
 
 #### Python
-Contains Python code used to program the Raspberry Pi 3. Creates the touch screen GUI, receives commands from the Arduino Nano, and sends commands to the OMAP-L138 LCDK via USB. 
-
+Contains Python code used to program the Raspberry Pi 3
