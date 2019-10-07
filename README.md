@@ -6,13 +6,13 @@ Time Machine is a Dynamic Delay-Based Audio Effects Module that can alter and re
 
 ### Hardware
 
-**Texas Instruments OMAP-L138 LCDK** - Performs all of the Digital Signal Processing operations and receives commands from the Raspberry Pi 3
+- **Texas Instruments OMAP-L138 LCDK** - Performs all of the Digital Signal Processing operations and receives commands from the Raspberry Pi 3
 
-**Raspberry Pi 3** - Used to create the touch screen GUI, receives commands from the Arduino Nano, and sends commands to the OMAP-L138 LCDK via USB 
+- **Raspberry Pi 3** - Used to create the touch screen GUI, receives commands from the Arduino Nano, and sends commands to the OMAP-L138 LCDK via USB 
 
-**Arduino Nano** - Used to create the 12 button push button pad and send messages to the Raspberry Pi 3 via USB
+- **Arduino Nano** - Used to create the 12 button push button pad and send messages to the Raspberry Pi 3 via USB
 
-**Uctronics 3.5 inch TFT touch screen** - Goes ontop of the Raspberry Pi 3 and is the touch screen for the device
+- **Uctronics 3.5 inch TFT touch screen** - Goes ontop of the Raspberry Pi 3 and is the touch screen for the device
 
 ### Folders and Purpose
 
