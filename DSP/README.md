@@ -21,7 +21,7 @@ main.c
 ISRs_B.c
   - Define left and right audio channel buffer
   - Global variables 
-  - Required functions to carry out delay-based audio effects
+  - Discrete time signals to carry out delay-based audio effects
   - Send altered audio data to the audio codec output using Interrupt Service Routine 
 
 LCDK_Support_DSP.c
