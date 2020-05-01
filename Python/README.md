@@ -4,9 +4,11 @@
 This is the Python code used to create a touch screen GUI on the Raspberry Pi 3. This is an Object-Oriented approach using Python. This code is broken into several sections. There are sections for Variables, Classes, Functions, and Main. The GUI has 12 different on-screen touch button modules, each corresponding with the 12 different push buttons on the Arduino Button Pad. The user selects the physical button they want to program on the touch screen. This will bring up an effects selection menu where the user chooses an effect. When the user selects an effect, it will bring the user back to the main menu, where they can program the other buttons. The chosen effect is associated with a unique ASCII character. All effects have their own ASCII character identifier. When an effect is chosen, its unique ASCII identifier is then associated with the input from the Arduino Button Pad. The Raspberry Pi 3 is programmed to send the associated character to the OMAP, via USB, when an input is received from the Button Pad. Inputs from the Arduino Button Pad are received as numbers, received via USB. The chosen effect is associated with this number identifier. There is a Tap Tempo and and Tempo Up buttons on the Main Menu screen as well. These also have their own ASCII identifiers as well. They send a character when pressed on screen. Each button Mod has its own effect selection menu page when pressed. This system allows the user to be able to arrange the effects how ever they like on the Button Pad, giving more creative freedom. 
 
 Main Menu
+
 <img src="images/Picture2.png" width="500">
 
 Effects Menu when Mod 1 is pressed
+
 <img src="images/Picture1.png" width="500">
 
 
