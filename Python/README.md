@@ -5,6 +5,7 @@ This is the Python code used to create a touch screen GUI on the Raspberry Pi 3.
 
 <img src="images/Picture2.png" width="500">
 Main Menu
+
 <img src="images/Picture1.png" width="500">
 Effects Menu when Mod 1 is pressed
 
