@@ -1,6 +1,6 @@
 #Author: Alex Perr
 #Project: Time Machine 
-#Purpose: This code creates the GUI and sends and reveives commands to and from the other devices 
+#Purpose: This code creates the GUI and sends and reveives commands to and from the other devices, TI OMAP-L138 and Arduino. 
 
 import Tkinter as tk
 import serial
@@ -11,11 +11,11 @@ arduino = serial.Serial('/dev/ttyUSB0', 115200, timeout=0, writeTimeout=0)
 omap = serial.Serial('/dev/ttyUSB1', 115200, timeout=5)
 
 #Global Variables
-
 LARGE_FONT = ("Verdana", 12)
 SMALL_FONT = ("Verdana", 8)
 
-BUTTON_SELECTED = 0  #Used to correspond effects selection to different buttons
+#Used to correspond effects selection to different buttons
+BUTTON_SELECTED = 0  
 TEXT_1 = "Mod 1"
 TEXT_2 = "Mod 2"
 TEXT_3 = "Mod 3"
@@ -62,7 +62,7 @@ def readSerial():
         
         print c
         
-        #button pressed
+        #button pressed from Arduino 
         if c == '0':
             omap.write(b'0')
             omap.write(b'0')
@@ -1284,7 +1284,7 @@ class MainClass(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
         
-#this is the main page where the user selects which physical button they wish to program
+#this is the main page, where the user selects the Arduino push button they wish to program
 class MainMenu(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent, background='#184A4A')
@@ -1338,7 +1338,6 @@ class MainMenu(tk.Frame):
         Mod12.grid(row=2, column=3)
 
         #tempoPress
-        
         tempoPress = tk.Button(self, text = "Tap Tempo", font = LARGE_FONT, height = 5, width = 10, background ='#FF6A62', activebackground='#EE2039')
         tempoPress.place(x=352, y=0)
         tempoPress.bind('<Button>', tapTempo)
@@ -1347,7 +1346,7 @@ class MainMenu(tk.Frame):
         tempoShiftUp.place(x=354, y=110)
         tempoShiftUp.bind('<Button>', shiftUp)
         tempoShiftUp.bind('<ButtonRelease>', shiftOff)
-        
+      
         tempoShiftDown = tk.Button(self, text = "Shift Tempo Down", font = SMALL_FONT, height = 2, width = 12, background = '#cdcdcd', activebackground = '#ffffff')
         tempoShiftDown.place(x=354, y=160)
         tempoShiftDown.bind('<Button>', shiftDown)
