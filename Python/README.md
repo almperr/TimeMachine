@@ -5,13 +5,13 @@ This is the Python code used to create a touch screen GUI on the Raspberry Pi 3.
 
 # Files
 Python/TimeMachine2.PY
-	- initialize serial
-	- create variables for programButton
-	- create read serial function, check input from Arduino Button Pad
-	- create logic for Tap Tempo, Tempo Up, Tempo Down touch button press
-	- create logic for each Mod Button touch button press
-	- create logic for Effect Selection  touch button press
-	- create Main Class: creates the "book frame" of the GUI and allows pages to be changed
-	- create Main Menu page class, with all the touch screen objects
-	- create Effects Pages for each of the 12 Mods
-	- end program 
+- initialize serial
+- create variables for programButton
+- create read serial function, check input from Arduino Button Pad
+- create logic for Tap Tempo, Tempo Up, Tempo Down touch button press
+- create logic for each Mod Button touch button press
+- create logic for Effect Selection  touch button press
+- create Main Class: creates the "book frame" of the GUI and allows pages to be changed
+- create Main Menu page class, with all the touch screen objects
+- create Effects Pages for each of the 12 Mods
+- end program 
