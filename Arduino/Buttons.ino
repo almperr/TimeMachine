@@ -1,7 +1,7 @@
 
 //Author: Alexander Perr
 //Project: Delay-Based Audio Effect Module
-//Purpose: Used to wait for button presses and send characters via UART to the Raspberry Pi which inturn control the DSP 
+//Purpose: wait for button presses and send characters via UART to the Raspberry Pi which inturn control the DSP 
 
 
 const int button1Pin = 4;     // the number of the pushbutton pin
