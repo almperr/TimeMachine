@@ -81,14 +81,12 @@ void ZeroBuffer()
     }
 }
 
-
 //SET ACTIVE BUTTON
 //*******************************
 void setActiveButton(int newButtonValue)
 {
     activeButton = newButtonValue;
 }
-
 
 //TAP TEMPO
 //*********
@@ -137,9 +135,8 @@ void Time()
 
 }
 
-
 //Time Machine Functions
-//Creates the Unit Step function, Ramp Step function, and an Exponential Step function
+//creates the logic for differential equations
 int Step(int passTime)
 {
     if(passTime < 0)
@@ -184,11 +181,11 @@ int Spin(int passTime, int passTime2, int passAmp, double passDecay)
 }
 
 //SET Time Machine
-//creates the time signal that changes the playback pointer over the 4 beat time period when pressed
+//creates the time signal using the differential equations that changes the playback pointer over the 4 beat time period when pressed
 void setTimeMachine(int serialPass)
 {
 
-    //serial commands get called here. This section contains functions that determine how far back in time to go.
+    //serial commands get called here. This section contains differential functions that determine how far back in time to go.
 
     serialStore = serialPass;
     int OB = oneBeat;
@@ -317,7 +314,7 @@ void setTimeMachine(int serialPass)
                 -(1.3)*Step(time-(3.75)*oneBeat)+Ramp(time, (time-(3.75)*oneBeat), 0.6)-(1.45)*Step(time-(4)*oneBeat)+Ramp(time, (time-(4)*oneBeat), 0.64);
     }
     */
-} //SET Time Machine END
+} //SET Time Machine end
 
 //Time Machine
 //links the playback pointer with selected time signal and sends altered audio data to the Audio Codec output channels
