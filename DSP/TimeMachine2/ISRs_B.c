@@ -1,15 +1,11 @@
 
 ///////////////////////////////////////////////////////////////////////
 // Filename: ISRs.c
-//
 // Synopsis: Allocate rolling buffer in SDRAM; Interrupt service routine for codec data transmit/receive @ 48kHz; Differential equations for time delay signals; Tap Tempo; Receive serial commands
-//
 // Author: Alexander Perr
-//
 // Project: Time Machine 
-//
 // Notes: printf and other functions are commented out but are still left in for further development
-///////////////////////////////////////////////////////////////////////
+
 
 #include "DSP_Config.h" 
 #include "Echo.h" 
