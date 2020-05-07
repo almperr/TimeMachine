@@ -2,11 +2,11 @@
 ///////////////////////////////////////////////////////////////////////
 // Filename: ISRs.c
 //
-// Synopsis: Interrupt service routine for codec data transmit/receive
+// Synopsis: Allocate rolling buffer in SDRAM; Interrupt service routine for codec data transmit/receive @ 48kHz; Differential equations for time delay signals; Tap Tempo; Receive serial commands
 //
 // Author: Alexander Perr
 //
-// Project: Time Machine 2
+// Project: Time Machine 
 //
 // Notes: printf and other functions are commented out but are still left in for further development
 ///////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ int serialStore = 0;                  //stores serial value from main to maintai
 int recIndex = 0;		      //variable for  recording index pointer
 int time = 0;			      //variable for time used for the 4 beat time window when button pressed
 int goBack = 0;			      //pointer used to set pointer back into the buffer over a period of time
-int bufferEnd = (24000*8);//default to 120 bpm
+int bufferEnd = (24000*8);            //default to 120 bpm
 int fluxCapacitor = 0;		      //playback pointer used to navagate through the buffer 
 float xLeft, xRight, yLeft, yRight;
 #define BUFFER_LENGTH   1152000       // buffer length in samples
@@ -137,7 +137,7 @@ void Time()
 
 //Time Machine Functions
 //creates the logic for differential equations
-int Step(int passTime)
+int Step(int passTime)			//unit step
 {
     if(passTime < 0)
     {
@@ -149,7 +149,7 @@ int Step(int passTime)
     }
 }
 
-int Ramp(int passTime, int passTime2, double passSlope)
+int Ramp(int passTime, int passTime2, double passSlope)			//slope 
 {
     int slopeProd = passSlope*passTime2;
 
@@ -163,7 +163,7 @@ int Ramp(int passTime, int passTime2, double passSlope)
     }
 }
 
-int Spin(int passTime, int passTime2, int passAmp, double passDecay)
+int Spin(int passTime, int passTime2, int passAmp, double passDecay)		//exponential function
 {
 
     int spinProd = passAmp*exp(passDecay*passTime2);
@@ -181,11 +181,11 @@ int Spin(int passTime, int passTime2, int passAmp, double passDecay)
 }
 
 //SET Time Machine
-//creates the time signal using the differential equations that changes the playback pointer over the 4 beat time period when pressed
+//creates the time delay signals using the differential equations that changes the playback pointer over the 4 beat time period when pressed
 void setTimeMachine(int serialPass)
 {
 
-    //serial commands get called here. This section contains differential functions that determine how far back in time to go.
+    //serial commands get called here. 
 
     serialStore = serialPass;
     int OB = oneBeat;
@@ -234,8 +234,8 @@ void setTimeMachine(int serialPass)
     }
     else if(serialPass ==56)                                        //Slow Triplet
     {
-       goBack = Ramp(time, time, -0.25)+Ramp((time-oneBeat), time, 0.25)+Ramp((time-oneBeat),(time-oneBeat), -0.25)
-                +Ramp((time-2*oneBeat),(time-oneBeat), 0.25)+Ramp((time-2*oneBeat),(time-2*oneBeat), -0.25)+Ramp((time-3*oneBeat),(time-2*oneBeat), 0.25)+Ramp((time-3*oneBeat),(time-3*oneBeat), -0.25);
+       goBack = Ramp(time, time, -0.25)+Ramp((time-oneBeat), time, 0.25)+Ramp((time-oneBeat),(time-oneBeat), -0.25)+Ramp((time-2*oneBeat),(time-oneBeat), 0.25)+
+		Ramp((time-2*oneBeat),(time-2*oneBeat), -0.25)+Ramp((time-3*oneBeat),(time-2*oneBeat), 0.25)+Ramp((time-3*oneBeat),(time-3*oneBeat), -0.25);
     }
     else if(serialPass == 57)                                      //BackSpin Start
     {
@@ -253,7 +253,8 @@ void setTimeMachine(int serialPass)
     }
     else if(serialPass == 60)                                      //Stutter 2
     {
-       goBack = -(0.25)*Step((time-0.25*OB))-(0.25)*Step((time-0.5*OB))+(0.5)*Step((time-OB))-(0.25)*Step((time-1.25*OB))-(0.25)*Step((time-1.5*OB))+(0.5)*Step((time-2*OB))-(0.25)*Step((time-2.25*OB))-(0.25)*Step((time-2.5*OB))+(0.5)*Step((time-3*OB))-(0.25)*Step((time-3.25*OB))-(0.25)*Step((time-3.5*OB));
+       goBack = -(0.25)*Step((time-0.25*OB))-(0.25)*Step((time-0.5*OB))+(0.5)*Step((time-OB))-(0.25)*Step((time-1.25*OB))-(0.25)*Step((time-1.5*OB))+
+		(0.5)*Step((time-2*OB))-(0.25)*Step((time-2.25*OB))-(0.25)*Step((time-2.5*OB))+(0.5)*Step((time-3*OB))-(0.25)*Step((time-3.25*OB))-(0.25)*Step((time-3.5*OB));
     }
     else if(serialPass == 61)                                      //Stutter 3
     {
@@ -261,7 +262,8 @@ void setTimeMachine(int serialPass)
     }
     else if(serialPass == 62)                                      //Stutter 4
     {
-       goBack = -(0.5)*Step((time-0.5*OB))+(0.5)*Step((time-OB))-(0.5)*Step((time-1.5*OB))-(0.5)*Step((time-1.75*OB))+(0.5)*Step((time-2.25*OB))+(0.25)*Step((time-3*OB))-(0.5)*Step((time-3.5*OB))-(1.5)*Step((time-3.75*OB));
+       goBack = -(0.5)*Step((time-0.5*OB))+(0.5)*Step((time-OB))-(0.5)*Step((time-1.5*OB))-(0.5)*Step((time-1.75*OB))+(0.5)*Step((time-2.25*OB))+(0.25)*Step((time-3*OB))-
+		(0.5)*Step((time-3.5*OB))-(1.5)*Step((time-3.75*OB));
     }
     else if(serialPass == 63)                                      //Shuffle
     {
@@ -327,11 +329,11 @@ void timeMachine()
     else if(goBack < 0)
     {
     //output buffer audio
-        fluxCapacitor = recIndex + goBack;
+        fluxCapacitor = recIndex + goBack;				//this is the playback pointer
 
         if(fluxCapacitor < 0)
         {
-            fluxCapacitor = fluxCapacitor + bufferEnd;
+            fluxCapacitor = fluxCapacitor + bufferEnd;			
         }
 
         CodecDataOut.Channel[LEFT] = buffer[LEFT][fluxCapacitor];
