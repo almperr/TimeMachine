@@ -40,7 +40,7 @@ StartUp.c
   - Placeholder for code run after DSK_Init
 
 tistdtypes.h
-  - DSP/BIOS_Kernel
+  - Standard def types from Texas Instruments
 
 
 
