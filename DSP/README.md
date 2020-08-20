@@ -42,6 +42,7 @@ StartUp.c
 tistdtypes.h
   - Standard def types from Texas Instruments
 
-
+vectors.asm
+  - Contains the interrupt vector table
 
   
