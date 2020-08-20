@@ -20,6 +20,6 @@ Time Machine is a Dynamic Delay-Based Audio Effects Module that can alter and re
 
 - **TimeMachine/Arduino** - Contains C++ code written in order to program the Arduino Nano
 
-- **TimeMachine/DSP** - Contains the C code used for the TI OMAP-L138 Low Cost Development Kit (LCDK)
+- **TimeMachine/DSP** - Contains the C code for real-time DSP operations on the TI OMAP-L138 Low Cost Development Kit (LCDK)
 
 - **TimeMachine/Python** - Contains Python code used to program the Raspberry Pi 3
